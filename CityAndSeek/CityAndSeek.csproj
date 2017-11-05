@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CityAndSeek.cs" />
+    <Compile Include="CreateGameActivity.cs" />
     <Compile Include="Game\PlayingField.cs" />
     <Compile Include="Helpers\GoogleMapHelper.cs" />
     <Compile Include="InGameActivity.cs" />
@@ -118,6 +119,9 @@
     </None>
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\InGame.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CreateGame.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

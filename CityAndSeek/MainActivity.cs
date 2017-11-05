@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Widget;
 using Android.OS;
 using Android.Views;
@@ -20,7 +21,8 @@ namespace CityAndSeek
         [Java.Interop.Export("OnCreateGamePress")]
         public void OnCreateGamePress(View view)
         {
-            SetContentView(Resource.Layout.InGame);
+            var intent = new Intent(this, typeof(CreateGameActivity));
+            StartActivity(intent);
         }
 
         [Java.Interop.Export("OnJoinGamePress")]

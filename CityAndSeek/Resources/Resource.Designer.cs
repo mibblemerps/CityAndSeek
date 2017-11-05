@@ -265,14 +265,17 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f070006
 			public const int auto = 2131165190;
 			
-			// aapt resource value: 0x7f07000f
-			public const int createGameButton = 2131165199;
+			// aapt resource value: 0x7f070011
+			public const int createGameButton = 2131165201;
 			
 			// aapt resource value: 0x7f070007
 			public const int dark = 2131165191;
 			
-			// aapt resource value: 0x7f07000d
-			public const int googleMap = 2131165197;
+			// aapt resource value: 0x7f07000f
+			public const int gameNameEditText = 2131165199;
+			
+			// aapt resource value: 0x7f070012
+			public const int googleMap = 2131165202;
 			
 			// aapt resource value: 0x7f070009
 			public const int hybrid = 2131165193;
@@ -280,11 +283,11 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f070003
 			public const int icon_only = 2131165187;
 			
-			// aapt resource value: 0x7f07000e
-			public const int imageView = 2131165198;
+			// aapt resource value: 0x7f070013
+			public const int imageView = 2131165203;
 			
-			// aapt resource value: 0x7f070010
-			public const int joinGameButton = 2131165200;
+			// aapt resource value: 0x7f070014
+			public const int joinGameButton = 2131165204;
 			
 			// aapt resource value: 0x7f070008
 			public const int light = 2131165192;
@@ -295,6 +298,9 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f07000a
 			public const int normal = 2131165194;
 			
+			// aapt resource value: 0x7f070010
+			public const int passwordEditText = 2131165200;
+			
 			// aapt resource value: 0x7f07000b
 			public const int satellite = 2131165195;
 			
@@ -303,6 +309,12 @@ namespace CityAndSeek
 			
 			// aapt resource value: 0x7f07000c
 			public const int terrain = 2131165196;
+			
+			// aapt resource value: 0x7f07000d
+			public const int textView = 2131165197;
+			
+			// aapt resource value: 0x7f07000e
+			public const int textView2 = 2131165198;
 			
 			// aapt resource value: 0x7f070005
 			public const int wide = 2131165189;
@@ -337,10 +349,13 @@ namespace CityAndSeek
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int InGame = 2130903040;
+			public const int CreateGame = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int InGame = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Main = 2130903042;
 			
 			static Layout()
 			{
@@ -408,6 +423,18 @@ namespace CityAndSeek
 			
 			// aapt resource value: 0x7f05000f
 			public const int common_signin_button_text_long = 2131034127;
+			
+			// aapt resource value: 0x7f050015
+			public const int create_game = 2131034133;
+			
+			// aapt resource value: 0x7f050014
+			public const int game_mode = 2131034132;
+			
+			// aapt resource value: 0x7f050013
+			public const int game_name = 2131034131;
+			
+			// aapt resource value: 0x7f050012
+			public const int password = 2131034130;
 			
 			static String()
 			{

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">CityAndSeek</string>
+
+  <string name="password">Password</string>
+  
+  <string name="game_name">Game Name</string>
+  <string name="game_mode">Game Mode</string>
+  
+  <string name="create_game">Create Game</string>
 </resources>
