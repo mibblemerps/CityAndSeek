@@ -271,6 +271,9 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f070007
 			public const int dark = 2131165191;
 			
+			// aapt resource value: 0x7f070013
+			public const int gameIdEditText = 2131165203;
+			
 			// aapt resource value: 0x7f07000f
 			public const int gameNameEditText = 2131165199;
 			
@@ -283,11 +286,11 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f070003
 			public const int icon_only = 2131165187;
 			
-			// aapt resource value: 0x7f070013
-			public const int imageView = 2131165203;
+			// aapt resource value: 0x7f070016
+			public const int imageView = 2131165206;
 			
-			// aapt resource value: 0x7f070014
-			public const int joinGameButton = 2131165204;
+			// aapt resource value: 0x7f070015
+			public const int joinGameButton = 2131165205;
 			
 			// aapt resource value: 0x7f070008
 			public const int light = 2131165192;
@@ -315,6 +318,9 @@ namespace CityAndSeek
 			
 			// aapt resource value: 0x7f07000e
 			public const int textView2 = 2131165198;
+			
+			// aapt resource value: 0x7f070014
+			public const int usernameEditText = 2131165204;
 			
 			// aapt resource value: 0x7f070005
 			public const int wide = 2131165189;
@@ -355,7 +361,10 @@ namespace CityAndSeek
 			public const int InGame = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Main = 2130903042;
+			public const int JoinGame = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int Main = 2130903043;
 			
 			static Layout()
 			{
@@ -424,17 +433,26 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f05000f
 			public const int common_signin_button_text_long = 2131034127;
 			
-			// aapt resource value: 0x7f050015
-			public const int create_game = 2131034133;
-			
-			// aapt resource value: 0x7f050014
-			public const int game_mode = 2131034132;
+			// aapt resource value: 0x7f050018
+			public const int create_game = 2131034136;
 			
 			// aapt resource value: 0x7f050013
-			public const int game_name = 2131034131;
+			public const int game_id = 2131034131;
+			
+			// aapt resource value: 0x7f050015
+			public const int game_mode = 2131034133;
+			
+			// aapt resource value: 0x7f050014
+			public const int game_name = 2131034132;
+			
+			// aapt resource value: 0x7f050017
+			public const int join_game = 2131034135;
 			
 			// aapt resource value: 0x7f050012
 			public const int password = 2131034130;
+			
+			// aapt resource value: 0x7f050016
+			public const int username = 2131034134;
 			
 			static String()
 			{
