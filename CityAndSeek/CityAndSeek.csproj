@@ -101,11 +101,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CityAndSeek.cs" />
+    <Compile Include="CityAndSeekApp.cs" />
     <Compile Include="CreateGameActivity.cs" />
+    <Compile Include="CsService\CsService.cs" />
     <Compile Include="Game\PlayingField.cs" />
     <Compile Include="Helpers\GoogleMapHelper.cs" />
     <Compile Include="InGameActivity.cs" />
+    <Compile Include="JoinGame.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,6 +124,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\CreateGame.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\JoinGame.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -152,6 +157,12 @@
       <Project>{a2080772-9ec1-4e7d-81c8-c85fcb701796}</Project>
       <Name>CityAndSeek-Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon_statusbar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

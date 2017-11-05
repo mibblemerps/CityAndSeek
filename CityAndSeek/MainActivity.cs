@@ -16,6 +16,8 @@ namespace CityAndSeek
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
+            
         }
 
         [Java.Interop.Export("OnCreateGamePress")]
@@ -29,6 +31,9 @@ namespace CityAndSeek
         public void OnJoinGamePress(View view)
         {
             Toast.MakeText(this, "Work in progress!", ToastLength.Long).Show();
+
+            Intent intent = new Intent(this, typeof(CsService.CsService));
+            StartService(intent);
         }
     }
 }

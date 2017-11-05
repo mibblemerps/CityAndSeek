@@ -243,6 +243,12 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f020015
 			public const int googleg_standard_color_18 = 2130837525;
 			
+			// aapt resource value: 0x7f020016
+			public const int icon = 2130837526;
+			
+			// aapt resource value: 0x7f020017
+			public const int icon_statusbar = 2130837527;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

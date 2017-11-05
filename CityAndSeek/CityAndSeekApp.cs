@@ -9,11 +9,15 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using CityAndSeek.Common;
 
 namespace CityAndSeek
 {
-    public class CityAndSeek : Application, Application.IActivityLifecycleCallbacks
+    public class CityAndSeekApp : Application, Application.IActivityLifecycleCallbacks
     {
+        public static Common.Game CurrentGame;
+        public static Player CurrentPlayer;
+
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
             //
