@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/game_id"
-        android:id="@+id/textView2"
+        android:id="@+id/gameIdLabel"
         android:layout_row="1"
         android:layout_column="0" />
     <EditText
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/password"
-        android:id="@+id/textView2"
+        android:id="@+id/gamePasswordLabel"
         android:layout_row="2"
         android:layout_column="0" />
     <EditText
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/username"
-        android:id="@+id/textView2"
+        android:id="@+id/usernameLabel"
         android:layout_row="3"
         android:layout_column="0" />
     <EditText

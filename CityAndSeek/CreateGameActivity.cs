@@ -54,15 +54,16 @@ namespace CityAndSeek
                 GameMode = GameMode.Assassins
             };
 
+            // Create game
             Packet result = await CsClient.CreateGameAsync(newGame);
             Common.Game game = result.GetPayload<Common.Game>();
 
-            Toast.MakeText(this, "Game ID: " + game.Id, ToastLength.Long).Show();
-
-//            RunOnUiThread(() =>
-//            {
-//                
-//            });
+            // Launch join game activity so that we can join our new game
+            var intent = new Android.Content.Intent(this, typeof(JoinGameActivity));
+            Bundle extras = new Bundle();
+            intent.PutExtra("GameId", game.Id);
+            intent.PutExtra("GamePassword", game.Password);
+            StartActivity(intent, extras);
         }
     }
 }

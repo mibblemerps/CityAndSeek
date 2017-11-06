@@ -277,11 +277,17 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f070007
 			public const int dark = 2131165191;
 			
+			// aapt resource value: 0x7f070014
+			public const int gameIdEditText = 2131165204;
+			
 			// aapt resource value: 0x7f070013
-			public const int gameIdEditText = 2131165203;
+			public const int gameIdLabel = 2131165203;
 			
 			// aapt resource value: 0x7f07000f
 			public const int gameNameEditText = 2131165199;
+			
+			// aapt resource value: 0x7f070015
+			public const int gamePasswordLabel = 2131165205;
 			
 			// aapt resource value: 0x7f070012
 			public const int googleMap = 2131165202;
@@ -292,11 +298,11 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f070003
 			public const int icon_only = 2131165187;
 			
-			// aapt resource value: 0x7f070016
-			public const int imageView = 2131165206;
+			// aapt resource value: 0x7f070019
+			public const int imageView = 2131165209;
 			
-			// aapt resource value: 0x7f070015
-			public const int joinGameButton = 2131165205;
+			// aapt resource value: 0x7f070018
+			public const int joinGameButton = 2131165208;
 			
 			// aapt resource value: 0x7f070008
 			public const int light = 2131165192;
@@ -325,8 +331,11 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f07000e
 			public const int textView2 = 2131165198;
 			
-			// aapt resource value: 0x7f070014
-			public const int usernameEditText = 2131165204;
+			// aapt resource value: 0x7f070017
+			public const int usernameEditText = 2131165207;
+			
+			// aapt resource value: 0x7f070016
+			public const int usernameLabel = 2131165206;
 			
 			// aapt resource value: 0x7f070005
 			public const int wide = 2131165189;

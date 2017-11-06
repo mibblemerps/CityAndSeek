@@ -13,11 +13,14 @@ using Android.Widget;
 namespace CityAndSeek
 {
     [Activity(Label = "Join Game")]
-    public class JoinGame : Activity
+    public class JoinGameActivity : Activity
     {
         protected EditText GameIdEditText;
         protected EditText GamePasswordEditText;
         protected EditText UsernameEditText;
+
+        protected TextView GameIdLabel;
+        protected TextView GamePasswordLabel;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -30,15 +33,20 @@ namespace CityAndSeek
             GamePasswordEditText = FindViewById<EditText>(Resource.Id.passwordEditText);
             UsernameEditText = FindViewById<EditText>(Resource.Id.usernameEditText);
 
+            GameIdLabel = FindViewById<TextView>(Resource.Id.gameIdLabel);
+            GamePasswordLabel = FindViewById<TextView>(Resource.Id.gamePasswordLabel);
+
             // Check if data was supplied
-            if (bundle.ContainsKey("GameId"))
+            if (Intent.HasExtra("GameId"))
             {
-                GameIdEditText.Text = bundle.GetString("GameId");
+                GameIdEditText.Text = Intent.GetIntExtra("GameId", 0).ToString();
+                GameIdLabel.Visibility = ViewStates.Gone;
                 GameIdEditText.Visibility = ViewStates.Gone;
             }
-            if (bundle.ContainsKey("GamePassword"))
+            if (Intent.HasExtra("GamePassword"))
             {
-                GamePasswordEditText.Text = bundle.GetString("GamePassword");
+                GamePasswordEditText.Text = Intent.GetStringExtra("GamePassword");
+                GamePasswordLabel.Visibility = ViewStates.Gone;
                 GamePasswordEditText.Visibility = ViewStates.Gone;
             }
         }
