@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Gms.Tasks;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -14,6 +16,7 @@ using CityAndSeek.Helpers;
 using Newtonsoft.Json;
 using WebSocketSharp;
 using Intent = CityAndSeek.Common.Packets.Intent;
+using Task = System.Threading.Tasks.Task;
 
 namespace CityAndSeek.Client
 {
@@ -22,7 +25,7 @@ namespace CityAndSeek.Client
         /// <summary>
         /// Links packet Ids to Actions which are supposed to handle them.
         /// </summary>
-        private IDictionary<int, Action<Packet>> _pendingActions = new Dictionary<int, Action<Packet>>();
+        private IDictionary<int, TaskCompletionSource<Packet>> _pendingActions = new Dictionary<int, TaskCompletionSource<Packet>>();
 
         private int _requestId = 0;
 
@@ -43,13 +46,21 @@ namespace CityAndSeek.Client
             Url = url;
         }
 
-        public void Connect(Action<bool> result = null)
+        protected Task<Packet> AwaitResponse(int requestId)
+        {
+            _pendingActions.Add(requestId, new TaskCompletionSource<Packet>());
+
+            return _pendingActions[requestId].Task;
+        }
+
+        public async Task<bool> Connect()
         {
             WebSocket = new WebSocket(Url);
             WebSocket.ConnectAsync();
 
-            if (result == null)
-                return;
+            WebSocket.OnMessage += OnWebSocketMessage;
+
+            TaskCompletionSource<bool> result = new TaskCompletionSource<bool>();
 
             EventHandler success = null;
             EventHandler<ErrorEventArgs> error = null;
@@ -66,23 +77,24 @@ namespace CityAndSeek.Client
             {
                 unregisterActions();
 
-                result.Invoke(true);
+                result.SetResult(true);
             };
             WebSocket.OnError += error = (sender, args) =>
             {
                 unregisterActions();
 
-                result.Invoke(false);
+                result.SetResult(false);
             };
             Timeout = new DelayedAction(() =>
             {
                 unregisterActions();
 
-                result.Invoke(false);
+                result.SetResult(false);
             });
             Timeout.Run(3000); // 3 second timeout
 
-            WebSocket.OnMessage += OnWebSocketMessage;
+            await result.Task;
+            return result.Task.Result;
         }
 
         protected void OnWebSocketMessage(object sender, MessageEventArgs e)
@@ -92,25 +104,16 @@ namespace CityAndSeek.Client
             if (_pendingActions.ContainsKey(packet.Id))
             {
                 // We have been awaiting this packet
-                _pendingActions[packet.Id](packet);
-                _pendingActions[packet.Id] = null; // Remove pending action so it cannot be called again
+                _pendingActions[packet.Id].SetResult(packet);
             }
         }
 
-        /// <summary>
-        /// Create a new City and Seek game.
-        /// </summary>
-        /// <param name="game">Game object with requested settings set</param>
-        /// <param name="complete">Action to invoke when game is created</param>
-        public void CreateGame(Common.Game game, Action<Common.Game> complete)
+        public async Task<Packet> CreateGameAsync(Common.Game game)
         {
             int requestId = RequestId;
-            WebSocket.SendAsync(JsonConvert.SerializeObject(new Packet(Intent.CreateGame, game, requestId)), b => {}); // todo: handle error here
-
-            _pendingActions.Add(requestId, (packet) =>
-            {
-                complete.Invoke(packet.GetPayload<Common.Game>());
-            });
+            WebSocket.SendAsync(JsonConvert.SerializeObject(new Packet(Intent.CreateGame, game, requestId)), b => { }); // todo: handle error here
+            
+            return await AwaitResponse(requestId);
         }
     }
 }

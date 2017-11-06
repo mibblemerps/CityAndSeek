@@ -46,10 +46,10 @@ namespace CityAndSeek
             StartService(intent);
         }
 
-        private void ConnectToServer()
+        private async void ConnectToServer()
         {
             // Connect to City and Seek if necessary
-            if (CityAndSeekApp.CsClient != null)
+            if (CityAndSeekApp.CsClient != null && CityAndSeekApp.CsClient.WebSocket.IsAlive)
                 return;
 
             // Show connection dialog
@@ -63,25 +63,24 @@ namespace CityAndSeek
             string serverUrl = Resources.GetString(Resource.String.server_url);
             Log.Info(CityAndSeekApp.Tag, "Connecting to City & Seek server: " + serverUrl);
             var client = CityAndSeekApp.CsClient = new CityAndSeekClient(serverUrl);
-            client.Connect((success) =>
+
+            // Connect
+            bool success = await client.Connect();
+
+            // Hide connecting dialog
+            connectingDialog.Hide();
+
+            if (!success)
             {
-                connectingDialog.Hide();
-
-                if (!success)
-                {
-                    // Failed to connect, destroy useless client
-                    CityAndSeekApp.CsClient = null;
-
-                    // Alert user
-                    AlertDialog connectErrorDialog = new AlertDialog.Builder(this)
-                        .SetTitle("Connection Error")
-                        .SetMessage("Couldn't connect to the City & Seek server!")
-                        .SetPositiveButton("Retry", (sender, args) => ConnectToServer())
-                        .SetNegativeButton("Cancel", (sender, args) => Finish())
-                        .SetCancelable(false)
-                        .Show();
-                }
-            });
+                // Alert user
+                AlertDialog connectErrorDialog = new AlertDialog.Builder(this)
+                    .SetTitle("Connection Error")
+                    .SetMessage("Couldn't connect to the City & Seek server!")
+                    .SetPositiveButton("Retry", (sender, args) => ConnectToServer())
+                    .SetNegativeButton("Cancel", (sender, args) => Finish())
+                    .SetCancelable(false)
+                    .Show();
+            }
         }
 
         /// <summary>
