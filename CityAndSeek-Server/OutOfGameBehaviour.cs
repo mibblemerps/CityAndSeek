@@ -73,7 +73,7 @@ namespace CityAndSeek.Server
             CsServer.AddGame(newGame);
 
             // Send game state to client
-            var response = new Packet(Intent.GameCreated, newGame);
+            var response = new Packet(Intent.GameCreated, newGame, packet.Id);
             Send(JsonConvert.SerializeObject(response));
         }
     }

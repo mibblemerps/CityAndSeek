@@ -15,6 +15,14 @@ namespace CityAndSeek.Common.Packets
         public Intent Intent;
 
         /// <summary>
+        /// A simple identifier that the client or server may send with their packet.<br />
+        /// This identifies this particular request. When an Id is received in a packet,
+        /// the same Id <b>must</b> be sent in any packet in response.<br />
+        /// This Id can be left as 0 if it's not needed.
+        /// </summary>
+        public int Id = 0;
+
+        /// <summary>
         /// Payload for this packet.
         /// </summary>
         public object Payload;
@@ -23,6 +31,13 @@ namespace CityAndSeek.Common.Packets
         {
             Intent = intent;
             Payload = payload;
+        }
+
+        public Packet(Intent intent, object payload, int id)
+        {
+            Intent = intent;
+            Payload = payload;
+            Id = id;
         }
 
         public Packet()

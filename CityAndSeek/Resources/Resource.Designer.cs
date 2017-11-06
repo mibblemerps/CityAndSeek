@@ -439,26 +439,29 @@ namespace CityAndSeek
 			// aapt resource value: 0x7f05000f
 			public const int common_signin_button_text_long = 2131034127;
 			
-			// aapt resource value: 0x7f050018
-			public const int create_game = 2131034136;
-			
-			// aapt resource value: 0x7f050013
-			public const int game_id = 2131034131;
-			
-			// aapt resource value: 0x7f050015
-			public const int game_mode = 2131034133;
+			// aapt resource value: 0x7f050019
+			public const int create_game = 2131034137;
 			
 			// aapt resource value: 0x7f050014
-			public const int game_name = 2131034132;
-			
-			// aapt resource value: 0x7f050017
-			public const int join_game = 2131034135;
-			
-			// aapt resource value: 0x7f050012
-			public const int password = 2131034130;
+			public const int game_id = 2131034132;
 			
 			// aapt resource value: 0x7f050016
-			public const int username = 2131034134;
+			public const int game_mode = 2131034134;
+			
+			// aapt resource value: 0x7f050015
+			public const int game_name = 2131034133;
+			
+			// aapt resource value: 0x7f050018
+			public const int join_game = 2131034136;
+			
+			// aapt resource value: 0x7f050013
+			public const int password = 2131034131;
+			
+			// aapt resource value: 0x7f050012
+			public const int server_url = 2131034130;
+			
+			// aapt resource value: 0x7f050017
+			public const int username = 2131034135;
 			
 			static String()
 			{

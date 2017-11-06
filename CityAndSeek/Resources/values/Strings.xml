@@ -2,6 +2,8 @@
 <resources>
   <string name="app_name">CityAndSeek</string>
 
+  <string name="server_url">ws://192.168.0.8:8888</string>
+
   <string name="password">Password</string>
 
   <string name="game_id">Game ID</string>

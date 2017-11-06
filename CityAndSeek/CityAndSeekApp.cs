@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using CityAndSeek.Client;
 using CityAndSeek.Common;
 
 namespace CityAndSeek
@@ -16,6 +17,8 @@ namespace CityAndSeek
     public class CityAndSeekApp : Application, Application.IActivityLifecycleCallbacks
     {
         public const string Tag = "City&Seek";
+
+        public static CityAndSeekClient CsClient;
 
         public static Common.Game CurrentGame;
         public static Player CurrentPlayer;

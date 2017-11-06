@@ -4,7 +4,9 @@ using Android.Content.PM;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V4.App;
+using Android.Util;
 using Android.Views;
+using CityAndSeek.Client;
 
 namespace CityAndSeek
 {
@@ -23,6 +25,9 @@ namespace CityAndSeek
             var result = ObtainPermission(Android.Manifest.Permission.AccessFineLocation);
             if (result == Permission.Denied)
                 ShowMissingPermissionsAlert();
+
+            // Connect to City and Seek server
+            ConnectToServer();
         }
 
         [Java.Interop.Export("OnCreateGamePress")]
@@ -39,6 +44,44 @@ namespace CityAndSeek
 
             Intent intent = new Intent(this, typeof(CsService.CsService));
             StartService(intent);
+        }
+
+        private void ConnectToServer()
+        {
+            // Connect to City and Seek if necessary
+            if (CityAndSeekApp.CsClient != null)
+                return;
+
+            // Show connection dialog
+            ProgressDialog connectingDialog = new ProgressDialog(this);
+            connectingDialog.SetProgressStyle(ProgressDialogStyle.Spinner);
+            connectingDialog.SetMessage("Connecting to server...");
+            connectingDialog.SetCancelable(false);
+            connectingDialog.Show();
+
+            // Create client and connect
+            string serverUrl = Resources.GetString(Resource.String.server_url);
+            Log.Info(CityAndSeekApp.Tag, "Connecting to City & Seek server: " + serverUrl);
+            var client = CityAndSeekApp.CsClient = new CityAndSeekClient(serverUrl);
+            client.Connect((success) =>
+            {
+                connectingDialog.Hide();
+
+                if (!success)
+                {
+                    // Failed to connect, destroy useless client
+                    CityAndSeekApp.CsClient = null;
+
+                    // Alert user
+                    AlertDialog connectErrorDialog = new AlertDialog.Builder(this)
+                        .SetTitle("Connection Error")
+                        .SetMessage("Couldn't connect to the City & Seek server!")
+                        .SetPositiveButton("Retry", (sender, args) => ConnectToServer())
+                        .SetNegativeButton("Cancel", (sender, args) => Finish())
+                        .SetCancelable(false)
+                        .Show();
+                }
+            });
         }
 
         /// <summary>
