@@ -1,7 +1,9 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Widget;
 using Android.OS;
+using Android.Support.V4.App;
 using Android.Views;
 
 namespace CityAndSeek
@@ -17,7 +19,10 @@ namespace CityAndSeek
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            
+            // Get location permission
+            var result = ObtainPermission(Android.Manifest.Permission.AccessFineLocation);
+            if (result == Permission.Denied)
+                ShowMissingPermissionsAlert();
         }
 
         [Java.Interop.Export("OnCreateGamePress")]
@@ -34,6 +39,54 @@ namespace CityAndSeek
 
             Intent intent = new Intent(this, typeof(CsService.CsService));
             StartService(intent);
+        }
+
+        /// <summary>
+        /// Obtain permission for something.
+        /// </summary>
+        /// <param name="permission">Permission name</param>
+        /// <returns>Permission result, or null if not known yet.</returns>
+        private Permission? ObtainPermission(string permission)
+        {
+            // Check permission currently
+            Permission permissionCheck = CheckSelfPermission(permission);
+            if (permissionCheck == Permission.Granted)
+                return Permission.Granted; // Permission already granted
+
+            RequestPermissions(new[] { permission }, 0);
+            return null;
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            if (requestCode != 0) return;
+
+            bool allGood = true;
+            foreach (Permission result in grantResults)
+            {
+                if (result == Permission.Denied)
+                {
+                    allGood = false;
+                    break;
+                }
+            }
+
+            if (!allGood)
+                ShowMissingPermissionsAlert();
+        }
+
+        private void ShowMissingPermissionsAlert()
+        {
+            // Alert the user that City & Seek is missing permissions
+            var alert = new AlertDialog.Builder(this)
+                .SetTitle("Missing Permissions")
+                .SetMessage("City & Seek is missing the required permissions to run.")
+                .SetPositiveButton("Okay", (sender, args) =>
+                {
+                    Finish();
+                })
+                .SetCancelable(false)
+                .Show();
         }
     }
 }

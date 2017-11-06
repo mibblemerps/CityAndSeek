@@ -15,6 +15,8 @@ namespace CityAndSeek
 {
     public class CityAndSeekApp : Application, Application.IActivityLifecycleCallbacks
     {
+        public const string Tag = "City&Seek";
+
         public static Common.Game CurrentGame;
         public static Player CurrentPlayer;
 
