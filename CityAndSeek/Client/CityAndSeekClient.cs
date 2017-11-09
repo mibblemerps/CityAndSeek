@@ -136,7 +136,7 @@ namespace CityAndSeek.Client
             var joinGamePayload = new JoinGamePayload(gameId, gamePassword, username);
 
             int requestId = RequestId;
-            WebSocket.SendAsync(JsonConvert.SerializeObject(new Packet(Intent.JoinGame, joinGamePayload)), b => { }); // todo: handle errors
+            WebSocket.SendAsync(JsonConvert.SerializeObject(new Packet(Intent.JoinGame, joinGamePayload, requestId)), b => { }); // todo: handle errors
             
             var resp = await AwaitResponse(requestId);
             return resp.GetPayload<WelcomePayload>();
