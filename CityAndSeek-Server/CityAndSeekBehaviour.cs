@@ -69,7 +69,7 @@ namespace CityAndSeek.Server
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(
+                    Debug.LogError(
                         $"Exception whilst handling packet (intent: \"{packet.Intent.ToString()}\") with handler {handler.GetType()}!");
                     
                 }
