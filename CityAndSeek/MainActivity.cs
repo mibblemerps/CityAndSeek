@@ -40,10 +40,8 @@ namespace CityAndSeek
         [Java.Interop.Export("OnJoinGamePress")]
         public void OnJoinGamePress(View view)
         {
-            Toast.MakeText(this, "Work in progress!", ToastLength.Long).Show();
-
-            Intent intent = new Intent(this, typeof(CsService.CsService));
-            StartService(intent);
+            Intent intent = new Intent(this, typeof(JoinGameActivity));
+            StartActivity(intent);
         }
 
         private async void ConnectToServer()
