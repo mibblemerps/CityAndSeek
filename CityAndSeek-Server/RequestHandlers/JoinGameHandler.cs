@@ -28,8 +28,7 @@ namespace CityAndSeek.Server.RequestHandlers
             }
 
             Game game = CsBehaviour.CsServer.Games[payload.GameId];
-
-            // todo: more error messages depending on state
+            
             if (game.GameState != GameState.Setup)
             {
                 string message = "Game cannot accept new players right now.";
