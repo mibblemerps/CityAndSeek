@@ -43,6 +43,7 @@
     <Compile Include="Packets\Packet.cs" />
     <Compile Include="Packets\Payloads\CreateGamePayload.cs" />
     <Compile Include="Packets\Payloads\ErrorPayload.cs" />
+    <Compile Include="Packets\Payloads\JoinGamePayload.cs" />
     <Compile Include="Packets\Payloads\WelcomePayload.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

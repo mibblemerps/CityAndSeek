@@ -26,6 +26,12 @@ namespace CityAndSeek.Common.Packets
         GameCreated,
 
         /// <summary>
+        /// <b>Client -> Server</b><br />
+        /// Sent when a client wants to join a game.
+        /// </summary>
+        JoinGame,
+
+        /// <summary>
         /// <b>Server -> Client</b><br />
         /// Sent in response to <i>JoinGame</i>.<br />
         /// Payload is a WelcomePayload.
