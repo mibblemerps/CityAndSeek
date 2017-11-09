@@ -40,7 +40,7 @@ namespace CityAndSeek.Server.RequestHandlers
             var response = new Packet(Intent.GameCreated, newGame, packet.Id);
             CsBehaviour.SendPacket(response);
 
-            Console.WriteLine($"Game created: \"{newGame.Name}\" ({newGame.Id})!");
+            Debug.LogInfo($"Game created: \"{newGame.Name}\" ({newGame.Id})!");
 
             return true;
         }

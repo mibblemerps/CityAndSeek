@@ -66,7 +66,7 @@ namespace CityAndSeek.Server.RequestHandlers
             var welcome = new WelcomePayload(game, player, player.Token);
             CsBehaviour.SendPacket(new Packet(Intent.Welcome, welcome));
 
-            Console.WriteLine($"Player \"{player.Name}\" ({player.Id}) just joined game \"{game.Name}\" ({game.Id})!");
+            Debug.LogInfo($"Player \"{player.Name}\" ({player.Id}) just joined game \"{game.Name}\" ({game.Id})!");
 
             return true;
         }

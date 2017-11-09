@@ -31,15 +31,10 @@ namespace CityAndSeek.Server
         {
             Server = new WebSocketServer(url);
 
+            Debug.LogInfo("Starting server: " + url);
+
             // Add out of game service
             Server.AddWebSocketService("/", () => new CityAndSeekBehaviour(this));
-
-            Console.WriteLine();
-            var payload = new CreateGamePayload("Test Game", "pwd", GameMode.Assassins);
-            var packet = new Packet(Intent.CreateGame, payload);
-            Console.WriteLine(JsonConvert.SerializeObject(packet));
-            Console.WriteLine();
-
             Server.Start();
         }
 

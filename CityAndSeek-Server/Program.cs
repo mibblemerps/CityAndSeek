@@ -11,7 +11,7 @@ namespace CityAndSeek.Server
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(string.Format("City & Seek Server (API Version: {0})", CityAndSeekCommon.ApiLevel));
+            Console.WriteLine($"City & Seek Server (API Version: {CityAndSeekCommon.ApiLevel})");
             Console.WriteLine("Current time: " + DateTime.Now);
             Console.WriteLine();
             

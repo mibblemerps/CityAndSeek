@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="CityAndSeekServer.cs" />
     <Compile Include="CityAndSeekBehaviour.cs" />
+    <Compile Include="Debug.cs" />
     <Compile Include="RequestHandlers\CreateGameHandler.cs" />
     <Compile Include="RequestHandlers\IRequestHandler.cs" />
     <Compile Include="Program.cs" />
