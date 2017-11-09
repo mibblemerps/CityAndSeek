@@ -9,7 +9,7 @@ namespace CityAndSeek.Common.Packets.Payloads
     /// <summary>
     /// Contains the data a client needs when joining/creating a game.
     /// </summary>
-    public class WelcomePayload
+    public class WelcomePayload : IPayload
     {
         /// <summary>
         /// Game object.

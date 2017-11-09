@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CityAndSeek.Common.Packets.Payloads
 {
-    public class JoinGamePayload
+    public class JoinGamePayload : IPayload
     {
         public int GameId;
         public string GamePassword;

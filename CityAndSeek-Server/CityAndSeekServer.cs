@@ -32,7 +32,7 @@ namespace CityAndSeek.Server
             Server = new WebSocketServer(url);
 
             // Add out of game service
-            Server.AddWebSocketService("/", () => new OutOfGameBehaviour(this));
+            Server.AddWebSocketService("/", () => new CityAndSeekBehaviour(this));
 
             Console.WriteLine();
             var payload = new CreateGamePayload("Test Game", "pwd", GameMode.Assassins);

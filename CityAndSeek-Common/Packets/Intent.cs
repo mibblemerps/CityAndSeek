@@ -12,6 +12,11 @@ namespace CityAndSeek.Common.Packets
     public enum Intent
     {
         /// <summary>
+        /// Informing the other party that an error occured.
+        /// </summary>
+        Error,
+
+        /// <summary>
         /// <b>Client -> Server</b><br />
         /// Create a new game.<br />
         /// Payload is a Game object with the requested values set.

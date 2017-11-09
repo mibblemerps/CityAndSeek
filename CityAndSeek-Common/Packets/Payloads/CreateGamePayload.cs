@@ -9,7 +9,7 @@ namespace CityAndSeek.Common.Packets.Payloads
     /// <summary>
     /// Sent to the server when the client wants to create a new game.
     /// </summary>
-    public class CreateGamePayload
+    public class CreateGamePayload : IPayload
     {
         public string Name = "Game";
         public string Password = "";

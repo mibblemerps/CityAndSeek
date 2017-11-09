@@ -6,22 +6,19 @@ using System.Threading.Tasks;
 
 namespace CityAndSeek.Common.Packets.Payloads
 {
-    public class ErrorPayload
+    /// <summary>
+    /// Usually sent in response to a packet.<br />
+    /// Ensure the Id on the packet is set.
+    /// </summary>
+    public class ErrorPayload : IPayload
     {
-        /// <summary>
-        /// The intent that was sent that this error relates to.<br />
-        /// If not related to a particular intent, this can be null.
-        /// </summary>
-        public Intent? ForIntent = null;
-
         /// <summary>
         /// Error message
         /// </summary>
         public string Message;
 
-        public ErrorPayload(Intent? forIntent, string message)
+        public ErrorPayload(string message)
         {
-            ForIntent = forIntent;
             Message = message;
         }
     }
