@@ -20,16 +20,10 @@ namespace CityAndSeek.Server.RequestHandlers
             if (packet.Intent != Intent.PositionUpdate)
                 return false;
 
-            Player player = CsBehaviour.Player;
-            if (player == null)
-            {
-                CsBehaviour.SendError(packet.Id, "Unauthenticated");
-                return true;
-            }
+            Player player = CsBehaviour.RequirePlayer();
 
+            // Update position from payload
             PositionUpdatePayload positionUpdate = packet.GetPayload<PositionUpdatePayload>();
-
-            // Set new position
             player.Position = positionUpdate.NewPosition;
 
             return true;

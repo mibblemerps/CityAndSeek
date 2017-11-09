@@ -25,10 +25,7 @@ namespace CityAndSeek.Server.RequestHandlers
 
             // Check game exists
             if (!CsBehaviour.CsServer.Games.ContainsKey(payload.GameId))
-            {
-                CsBehaviour.SendError(packet.Id, "Game doesn't exist!");
-                return true;
-            }
+                throw new CityAndSeekException("Game doesn't exist!");
 
             Game game = CsBehaviour.CsServer.Games[payload.GameId];
             
@@ -49,8 +46,7 @@ namespace CityAndSeek.Server.RequestHandlers
                         break;
                 }
 
-                CsBehaviour.SendError(packet.Id, message);
-                return true;
+                throw new CityAndSeekException(message);
             }
 
             // Get next available ID in the list

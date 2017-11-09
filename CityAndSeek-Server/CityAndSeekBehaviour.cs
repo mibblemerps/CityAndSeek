@@ -67,11 +67,17 @@ namespace CityAndSeek.Server
                 {
                     handler.OnPacket(packet);
                 }
+                catch (CityAndSeekException ex)
+                {
+                    Debug.LogError(
+                        $"CityAndSeekException whilst handling packet (intent: \"{packet.Intent.ToString()}\") with handler {handler.GetType()}!");
+                    SendError(packet.Id, ex.Message);
+                }
                 catch (Exception ex)
                 {
                     Debug.LogError(
-                        $"Exception whilst handling packet (intent: \"{packet.Intent.ToString()}\") with handler {handler.GetType()}!");
-                    
+                        $"Unexpected exception whilst handling packet (intent: \"{packet.Intent.ToString()}\") with handler {handler.GetType()}!");
+                    SendError(packet.Id, "Unexpected server exception:\n" + ex.Message);
                 }
             }
         }
@@ -94,6 +100,17 @@ namespace CityAndSeek.Server
         public void SendError(int requestId, string message)
         {
             SendPacket(new Packet(Intent.Error, new ErrorPayload(message), requestId));
+        }
+
+        /// <summary>
+        /// Return the currently authenticated player, and if there is no authenticated player, throw a <em>CityAndSeekException.UnauthenticatedException</em>.
+        /// </summary>
+        /// <returns>Currently authenticated player</returns>
+        public Player RequirePlayer()
+        {
+            if (Player == null)
+                throw new CityAndSeekException.UnauthenticatedException();
+            return Player;
         }
     }
 }
