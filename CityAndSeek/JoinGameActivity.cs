@@ -10,7 +10,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using CityAndSeek.Client;
-using CityAndSeek.Common.Packets;
 using CityAndSeek.Common.Packets.Payloads;
 
 namespace CityAndSeek
@@ -68,9 +67,8 @@ namespace CityAndSeek
             JoinGameButton.Enabled = false;
 
             // Join game
-            Packet result = await CsClient.JoinGameAsync(Int32.Parse(GameIdEditText.Text), GamePasswordEditText.Text,
+            WelcomePayload welcome = await CsClient.JoinGameAsync(Int32.Parse(GameIdEditText.Text), GamePasswordEditText.Text,
                 UsernameEditText.Text);
-            WelcomePayload welcome = result.GetPayload<WelcomePayload>();
 
             // Record this data
             welcome.Player.Token = welcome.Token;

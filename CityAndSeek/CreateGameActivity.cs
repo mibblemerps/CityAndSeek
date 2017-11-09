@@ -55,8 +55,7 @@ namespace CityAndSeek
             };
 
             // Create game
-            Packet result = await CsClient.CreateGameAsync(newGame);
-            Common.Game game = result.GetPayload<Common.Game>();
+            Common.Game game = await CsClient.CreateGameAsync(newGame);
 
             // Launch join game activity so that we can join our new game
             var intent = new Android.Content.Intent(this, typeof(JoinGameActivity));

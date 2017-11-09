@@ -114,12 +114,14 @@ namespace CityAndSeek.Client
         /// </summary>
         /// <param name="game">Requested game options. Not everything has to be set.</param>
         /// <returns>Created game</returns>
-        public async Task<Packet> CreateGameAsync(Common.Game game)
+        public async Task<Common.Game> CreateGameAsync(Common.Game game)
         {
             int requestId = RequestId;
             WebSocket.SendAsync(JsonConvert.SerializeObject(new Packet(Intent.CreateGame, game, requestId)), b => { }); // todo: handle error here
             
-            return await AwaitResponse(requestId);
+            
+            var resp = await AwaitResponse(requestId);
+            return resp.GetPayload<Common.Game>();
         }
 
         /// <summary>
@@ -129,14 +131,15 @@ namespace CityAndSeek.Client
         /// <param name="gamePassword">Game password</param>
         /// <param name="username">Username to use</param>
         /// <returns>Welcome payload</returns>
-        public async Task<Packet> JoinGameAsync(int gameId, string gamePassword, string username)
+        public async Task<WelcomePayload> JoinGameAsync(int gameId, string gamePassword, string username)
         {
             var joinGamePayload = new JoinGamePayload(gameId, gamePassword, username);
 
             int requestId = RequestId;
             WebSocket.SendAsync(JsonConvert.SerializeObject(new Packet(Intent.JoinGame, joinGamePayload)), b => { }); // todo: handle errors
-
-            return await AwaitResponse(requestId);
+            
+            var resp = await AwaitResponse(requestId);
+            return resp.GetPayload<WelcomePayload>();
         }
     }
 }

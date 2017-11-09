@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CityAndSeekException.cs" />
     <Compile Include="CityAndSeekServer.cs" />
     <Compile Include="CityAndSeekBehaviour.cs" />
     <Compile Include="Debug.cs" />
