@@ -18,6 +18,9 @@ namespace CityAndSeek.Server.RequestHandlers
 
         public override bool OnPacket(Packet packet)
         {
+            if (packet.Intent != Intent.JoinGame)
+                return false;
+
             JoinGamePayload payload = packet.GetPayload<JoinGamePayload>();
 
             // Check game exists
