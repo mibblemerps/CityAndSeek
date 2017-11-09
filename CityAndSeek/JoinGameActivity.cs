@@ -70,13 +70,12 @@ namespace CityAndSeek
             WelcomePayload welcome = await CsClient.JoinGameAsync(Int32.Parse(GameIdEditText.Text), GamePasswordEditText.Text,
                 UsernameEditText.Text);
 
-            // Record this data
+            // Start the game
             welcome.Player.Token = welcome.Token;
-            CityAndSeekApp.CurrentGame = welcome.Game;
-            CityAndSeekApp.CurrentPlayer = welcome.Player;
+            CityAndSeekApp.Instance.StartGame(welcome.Game, welcome.Player);
 
             // Launch in-game activity
-            var intent = new Android.Content.Intent(this, typeof(InGameActivity));
+            var intent = new Intent(this, typeof(InGameActivity));
             StartActivity(intent);
         }
     }

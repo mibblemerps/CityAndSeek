@@ -12,7 +12,6 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
 
 namespace CityAndSeek.CsService
 {
@@ -20,6 +19,8 @@ namespace CityAndSeek.CsService
     public class CsService : Service
     {
         const int ReturnToGamePendingIntentId = 0;
+
+        protected CityAndSeekApp CsApp;
 
         protected LocationManager LocationManager;
         protected LocationTracker LocationTracker;
@@ -38,10 +39,12 @@ namespace CityAndSeek.CsService
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            Log.Info(CityAndSeekApp.Tag, "City and Seek service started.");
+            Log.Info(CityAndSeekApp.Tag, "City and Seek service starting...");
 
-            //if (CityAndSeekApp.CurrentGame == null || CityAndSeekApp.CurrentPlayer == null)
-            //    throw new RuntimeException("Attempt to run City and Seek service without a current game/player!");
+            CsApp = CityAndSeekApp.Instance;
+
+            if (CsApp.CurrentGame == null)
+                throw new Exception("Attempt to start City and Seek service, but there is no active game.");
 
             BeginTracking();
 

@@ -14,14 +14,41 @@ using CityAndSeek.Common;
 
 namespace CityAndSeek
 {
+    [Application]
     public class CityAndSeekApp : Application, Application.IActivityLifecycleCallbacks
     {
         public const string Tag = "City&Seek";
 
+        /// <summary>
+        /// Current application instance.
+        /// </summary>
+        public static CityAndSeekApp Instance { get; private set; }
+
         public static CityAndSeekClient CsClient;
 
-        public static Common.Game CurrentGame;
-        public static Player CurrentPlayer;
+        public Common.Game CurrentGame { get; protected set; }
+        public Player CurrentPlayer { get; protected set; }
+
+        public CityAndSeekApp(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        {
+            Instance = this;
+        }
+
+        public void StartGame(Common.Game game, Player player)
+        {
+            CurrentGame = game;
+            CurrentPlayer = player;
+            player.Game = CurrentGame;
+
+            // Start service
+            var intent = new Intent(this, typeof(CsService.CsService));
+            StartService(intent);
+
+            // Good luck
+            Toast.MakeText(this, "Good Luck", ToastLength.Long).Show();
+        }
+
+        #region Stubs
 
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
@@ -57,5 +84,7 @@ namespace CityAndSeek
         {
             //
         }
+
+        #endregion
     }
 }
