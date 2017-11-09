@@ -88,7 +88,11 @@ namespace CityAndSeek.Server
         /// <param name="packet">Packet</param>
         public void SendPacket(Packet packet)
         {
-            SendAsync(JsonConvert.SerializeObject(packet), b => {});
+            SendAsync(JsonConvert.SerializeObject(packet), success =>
+            {
+                if (!success)
+                    Debug.LogError($"Failed to send packet (intent: {packet.Intent})!");
+            });
         }
 
         /// <summary>
