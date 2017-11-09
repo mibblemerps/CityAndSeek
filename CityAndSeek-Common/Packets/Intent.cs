@@ -48,5 +48,11 @@ namespace CityAndSeek.Common.Packets
         /// Sends the entire game state (the full game object) to the client.
         /// </summary>
         GameState,
+
+        /// <summary>
+        /// <b>Client -> Server</b><br />
+        /// Sends the new position of the player. This should be sent every few seconds or so.
+        /// </summary>
+        PositionUpdate,
     }
 }

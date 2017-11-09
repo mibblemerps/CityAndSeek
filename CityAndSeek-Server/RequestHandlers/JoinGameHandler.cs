@@ -61,8 +61,12 @@ namespace CityAndSeek.Server.RequestHandlers
             {
                 Id = id,
                 Name = payload.Username,
-                Token = GenerateSecureToken()
+                Token = GenerateSecureToken(),
+                Game = game
             };
+
+            // Associate this websocket with this new player
+            CsBehaviour.Player = player;
 
             // Create and send welcome payload
             var welcome = new WelcomePayload(game, player, player.Token);

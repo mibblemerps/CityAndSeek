@@ -20,6 +20,30 @@ namespace CityAndSeek.Server
 
         protected List<IRequestHandler> RequestHandlers;
 
+        /// <summary>
+        /// The player this session is associated with.<br />
+        /// If the session is unauthenticated this will be null.
+        /// </summary>
+        public Player Player
+        {
+            get
+            {
+                if (!CsServer.ClientToPlayer.ContainsKey(ID))
+                    return null;
+
+                return CsServer.ClientToPlayer[ID];
+            }
+            set
+            {
+                if (CsServer.ClientToPlayer.ContainsKey(ID))
+                    CsServer.ClientToPlayer.Remove(ID);
+
+                Debug.LogInfo($"Session \"{ID}\" now associated with player {value.Id} in game {value.Game.Id}.");
+
+                CsServer.ClientToPlayer.Add(ID, value);
+            }
+        }
+
         public CityAndSeekBehaviour(CityAndSeekServer csServer)
         {
             CsServer = csServer;
@@ -27,7 +51,8 @@ namespace CityAndSeek.Server
             RequestHandlers = new List<IRequestHandler>()
             {
                 new CreateGameHandler(this),
-                new JoinGameHandler(this)
+                new JoinGameHandler(this),
+                new PositionUpdateHandler(this)
             };
         }
 

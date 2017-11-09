@@ -22,6 +22,11 @@ namespace CityAndSeek.Server
 
         public Dictionary<int, Game> Games = new Dictionary<int, Game>();
 
+        /// <summary>
+        /// Maps the unique WebSocket session ID to the player they are.
+        /// </summary>
+        public Dictionary<string, Player> ClientToPlayer = new Dictionary<string, Player>();
+
         public CityAndSeekServer()
         {
             Instance = this;

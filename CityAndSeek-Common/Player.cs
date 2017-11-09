@@ -42,5 +42,11 @@ namespace CityAndSeek.Common
         /// </summary>
         [JsonIgnore] // For security reasons, this shouldn't be included in JSON
         public string Token;
+
+        /// <summary>
+        /// The game this player belongs to.
+        /// </summary>
+        [JsonIgnore]
+        public Game Game;
     }
 }
