@@ -17,7 +17,7 @@ using CityAndSeek.Game;
 
 namespace CityAndSeek
 {
-    [Activity(Label = "InGameActivity")]
+    [Activity(Label = "City & Seek")]
     public class InGameActivity : FragmentActivity, IOnMapReadyCallback
     {
         protected GoogleMap Map;
