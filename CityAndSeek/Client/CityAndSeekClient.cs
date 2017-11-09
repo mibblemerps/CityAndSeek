@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Gms.Maps.Model;
 using Android.Gms.Tasks;
 using Android.OS;
 using Android.Runtime;
@@ -17,6 +18,7 @@ using CityAndSeek.Helpers;
 using Newtonsoft.Json;
 using WebSocketSharp;
 using Intent = CityAndSeek.Common.Packets.Intent;
+using LatLng = CityAndSeek.Common.LatLng;
 using Task = System.Threading.Tasks.Task;
 
 namespace CityAndSeek.Client
@@ -140,6 +142,25 @@ namespace CityAndSeek.Client
             
             var resp = await AwaitResponse(requestId);
             return resp.GetPayload<WelcomePayload>();
+        }
+
+        /// <summary>
+        /// Send new position to the server.
+        /// </summary>
+        /// <param name="newLocation">New position</param>
+        /// <returns>Success?</returns>
+        public async Task<bool> SendPositionUpdateAsync(LatLng newLocation)
+        {
+            var payload = new PositionUpdatePayload(newLocation);
+
+            TaskCompletionSource<bool> success = new TaskCompletionSource<bool>();
+
+            WebSocket.SendAsync(JsonConvert.SerializeObject(new Packet(Intent.PositionUpdate, payload)), b =>
+            {
+                success.SetResult(b);
+            });
+
+            return await success.Task;
         }
     }
 }

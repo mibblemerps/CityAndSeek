@@ -13,5 +13,14 @@ namespace CityAndSeek.Common.Packets.Payloads
     public class PositionUpdatePayload : IPayload
     {
         public LatLng NewPosition;
+
+        public PositionUpdatePayload(LatLng newPosition)
+        {
+            NewPosition = newPosition;
+        }
+
+        public PositionUpdatePayload()
+        {
+        }
     }
 }

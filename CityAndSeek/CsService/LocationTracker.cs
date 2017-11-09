@@ -14,6 +14,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using CityAndSeek.Common;
 using Java.Lang;
 
 namespace CityAndSeek.CsService
@@ -23,7 +24,7 @@ namespace CityAndSeek.CsService
     {
         public Location LastLocation { get; private set; }
 
-        protected Context Context;
+        protected CsService CsService;
 
         [Obsolete]
         protected LocationManager LocationManager;
@@ -31,9 +32,9 @@ namespace CityAndSeek.CsService
         protected GoogleApiClient ApiClient;
         protected LocationRequest LocationRequest;
 
-        public LocationTracker(Context context)
+        public LocationTracker(CsService service)
         {
-            Context = context;
+            CsService = service;
         }
 
         public void Track()
@@ -41,7 +42,7 @@ namespace CityAndSeek.CsService
             Log.Info(CityAndSeekApp.Tag, "Starting up City and Seek location tracker...");
 
             // Setup API client
-            ApiClient = new GoogleApiClient.Builder(Context, this, this)
+            ApiClient = new GoogleApiClient.Builder(CsService, this, this)
                 .AddApi(LocationServices.API).Build();
 
             LocationRequest = new LocationRequest();
@@ -72,11 +73,14 @@ namespace CityAndSeek.CsService
             //
         }
 
-        public void OnLocationChanged(Location location)
+        public async void OnLocationChanged(Location location)
         {
             LastLocation = location;
             Log.Verbose(CityAndSeekApp.Tag,
                 string.Format("Location update: {0}, {1}", location.Latitude, location.Longitude));
+
+            // Send location update to server
+            await CityAndSeekApp.CsClient.SendPositionUpdateAsync(new LatLng(location.Latitude, location.Longitude));
         }
     }
 }

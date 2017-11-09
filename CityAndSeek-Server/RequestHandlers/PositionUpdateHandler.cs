@@ -26,6 +26,8 @@ namespace CityAndSeek.Server.RequestHandlers
             PositionUpdatePayload positionUpdate = packet.GetPayload<PositionUpdatePayload>();
             player.Position = positionUpdate.NewPosition;
 
+            Debug.LogDebug($"Position update from \"{player.Name}\" ({player.Id}): {player.Position}");
+
             return true;
         }
     }

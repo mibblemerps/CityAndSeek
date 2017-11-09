@@ -64,14 +64,14 @@ namespace CityAndSeek.CsService
         {
             // Intent when the notification is pressed
             var intent = new Intent(this, typeof(InGameActivity));
-            var pendingIntent = PendingIntent.GetActivity(this, ReturnToGamePendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
+            var pendingIntent = PendingIntent.GetActivity(this, ReturnToGamePendingIntentId, intent, PendingIntentFlags.Immutable);
 
             Bitmap largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.icon);
 
             // Build the notification
             var notification = new Notification.Builder(this)
                 .SetContentTitle("City & Seek")
-                .SetContentText("In game: <game name>")
+                .SetContentText("In game: " + CsApp.CurrentGame.Name)
                 .SetSmallIcon(Resource.Drawable.icon_statusbar)
                 .SetLargeIcon(largeIcon)
                 .SetContentIntent(pendingIntent)
