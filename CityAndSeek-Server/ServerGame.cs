@@ -17,9 +17,12 @@ namespace CityAndSeek.Server
 
         public ServerGame()
         {
-            Debug.LogInfo($"Game created: {this}");
-
             OnPlayerJoinGame += OnPlayerJoinGameHandler;
+        }
+
+        public void Setup()
+        {
+            Debug.LogInfo($"Game created: {this}");
         }
 
         public void AddPlayer(ServerPlayer player)
