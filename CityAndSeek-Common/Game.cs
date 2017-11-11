@@ -42,5 +42,10 @@ namespace CityAndSeek.Common
         /// Players in this game.
         /// </summary>
         public List<Player> Players = new List<Player>();
+
+        public override string ToString()
+        {
+            return $"\"{Name}\" ({Id})";
+        }
     }
 }

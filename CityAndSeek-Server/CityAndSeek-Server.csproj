@@ -51,17 +51,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CityAndSeekConnection.cs" />
     <Compile Include="CityAndSeekException.cs" />
     <Compile Include="CityAndSeekServer.cs" />
-    <Compile Include="CityAndSeekBehaviour.cs" />
     <Compile Include="Debug.cs" />
-    <Compile Include="RequestHandlers\CreateGameHandler.cs" />
-    <Compile Include="RequestHandlers\IRequestHandler.cs" />
+    <Compile Include="Events\PlayerJoinGameEvent.cs" />
+    <Compile Include="Events\PlayerPositionUpdateEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestHandlers\JoinGameHandler.cs" />
-    <Compile Include="RequestHandlers\PositionUpdateHandler.cs" />
+    <Compile Include="RequestHandlers\CreateGameHandler.cs" />
+    <Compile Include="RequestHandlers\IRequestHandler.cs" />
     <Compile Include="RequestHandlers\RequestHandler.cs" />
+    <Compile Include="ServerGame.cs" />
+    <Compile Include="ServerPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

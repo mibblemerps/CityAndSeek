@@ -22,11 +22,6 @@ namespace CityAndSeek.Server
 
         public Dictionary<int, Game> Games = new Dictionary<int, Game>();
 
-        /// <summary>
-        /// Maps the unique WebSocket session ID to the player they are.
-        /// </summary>
-        public Dictionary<string, Player> ClientToPlayer = new Dictionary<string, Player>();
-
         public CityAndSeekServer()
         {
             Instance = this;
@@ -37,9 +32,9 @@ namespace CityAndSeek.Server
             Server = new WebSocketServer(url);
 
             Debug.LogInfo("Starting server: " + url);
+            
+            Server.AddWebSocketService("/", () => new CityAndSeekConnection(this));
 
-            // Add out of game service
-            Server.AddWebSocketService("/", () => new CityAndSeekBehaviour(this));
             Server.Start();
         }
 

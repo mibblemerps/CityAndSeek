@@ -10,39 +10,29 @@ namespace CityAndSeek.Server.RequestHandlers
 {
     public class CreateGameHandler : RequestHandler
     {
-        public CreateGameHandler(CityAndSeekBehaviour csBehaviour) : base(csBehaviour)
+        public CreateGameHandler(CityAndSeekConnection connection) : base(connection)
         {
         }
 
-        public override bool OnPacket(Packet packet)
+        public override void OnPacket(Packet packet)
         {
             if (packet.Intent != Intent.CreateGame)
-                return false;
+                return;
 
-            Game newGame = new Game();
-            Game receivedGame = packet.GetPayload<Game>();
+            Game requestedGame = packet.GetPayload<Game>();
 
-            // Find un-used game ID to use
-            int id = 1;
-            while (CsBehaviour.CsServer.Games.ContainsKey(id))
-                id++;
+            var newGame = new ServerGame()
+            {
+                Id = Connection.Server.Games.Count,
+                GameMode = requestedGame.GameMode,
+                Name = requestedGame.Name,
+                Password = requestedGame.Password
+            };
 
-            // Construct new game
-            newGame.Id = id;
-            newGame.Name = receivedGame.Name;
-            newGame.Password = receivedGame.Password;
-            newGame.GameMode = receivedGame.GameMode;
+            Connection.Server.Games.Add(newGame.Id, newGame);
 
-            // Add to games list
-            CsBehaviour.CsServer.AddGame(newGame);
-
-            // Send game state to client
-            var response = new Packet(Intent.GameCreated, newGame, packet.Id);
-            CsBehaviour.SendPacket(response);
-
-            Debug.LogInfo($"Game created: \"{newGame.Name}\" ({newGame.Id})!");
-
-            return true;
+            // Send created game back
+            Connection.SendPacket(new Packet(Intent.GameCreated, newGame));
         }
     }
 }

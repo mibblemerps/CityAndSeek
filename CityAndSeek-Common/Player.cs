@@ -48,5 +48,10 @@ namespace CityAndSeek.Common
         /// </summary>
         [JsonIgnore]
         public Game Game;
+
+        public override string ToString()
+        {
+            return $"\"{Name}\" ({Id})";
+        }
     }
 }

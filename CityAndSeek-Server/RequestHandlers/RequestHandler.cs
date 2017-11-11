@@ -9,13 +9,13 @@ namespace CityAndSeek.Server.RequestHandlers
 {
     public abstract class RequestHandler : IRequestHandler
     {
-        protected CityAndSeekBehaviour CsBehaviour;
+        protected CityAndSeekConnection Connection;
 
-        public RequestHandler(CityAndSeekBehaviour csBehaviour)
+        public RequestHandler(CityAndSeekConnection connection)
         {
-            CsBehaviour = csBehaviour;
+            Connection = connection;
         }
 
-        public abstract bool OnPacket(Packet packet);
+        public abstract void OnPacket(Packet packet);
     }
 }
