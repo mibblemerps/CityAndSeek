@@ -20,7 +20,7 @@ namespace CityAndSeek.Server
 
         public WebSocketServer Server;
 
-        public Dictionary<int, Game> Games = new Dictionary<int, Game>();
+        public Dictionary<int, ServerGame> Games = new Dictionary<int, ServerGame>();
 
         public CityAndSeekServer()
         {
@@ -38,7 +38,7 @@ namespace CityAndSeek.Server
             Server.Start();
         }
 
-        public void AddGame(Game game)
+        public void AddGame(ServerGame game)
         {
             Games.Add(game.Id, game);
         }

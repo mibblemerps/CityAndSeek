@@ -28,7 +28,8 @@ namespace CityAndSeek.Server
 
             RequestHandlers = new List<IRequestHandler>
             {
-                new CreateGameHandler(this)
+                new CreateGameHandler(this),
+                new JoinGameHandler(this)
             };
         }
 
