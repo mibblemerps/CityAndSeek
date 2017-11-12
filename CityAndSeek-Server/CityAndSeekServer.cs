@@ -35,7 +35,7 @@ namespace CityAndSeek.Server
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
             
             Server.AddWebSocketService("/", () => new CityAndSeekConnection(this));
