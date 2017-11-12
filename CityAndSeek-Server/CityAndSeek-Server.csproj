@@ -55,6 +55,9 @@
     <Compile Include="CityAndSeekException.cs" />
     <Compile Include="CityAndSeekServer.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Events\GameStartEvent.cs" />
+    <Compile Include="Events\GameStateChangeEvent.cs" />
+    <Compile Include="Events\MapCycleEvent.cs" />
     <Compile Include="Events\PlayerJoinGameEvent.cs" />
     <Compile Include="Events\PlayerPositionUpdateEvent.cs" />
     <Compile Include="Helpers\SecureToken.cs" />

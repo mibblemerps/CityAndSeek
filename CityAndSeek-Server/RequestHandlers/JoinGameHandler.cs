@@ -61,7 +61,8 @@ namespace CityAndSeek.Server.RequestHandlers
                 Id = newId,
                 Name = joinGame.Username,
                 Token = SecureToken.Generate(),
-                Game = game
+                Game = game,
+                Connection = Connection
             };
 
             // Associate player with this connection

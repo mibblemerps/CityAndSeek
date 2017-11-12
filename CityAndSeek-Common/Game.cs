@@ -16,32 +16,32 @@ namespace CityAndSeek.Common
         /// <summary>
         /// Unique ID for this game.
         /// </summary>
-        public int Id;
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// Name of the game.
         /// </summary>
-        public string Name = "Game";
+        public virtual string Name { get; set; } = "Game";
 
         /// <summary>
         /// Password to join the game.
         /// </summary>
-        public string Password = "";
-        
+        public virtual string Password { get; set; }
+
         /// <summary>
         /// Game mode being played.
         /// </summary>
-        public GameMode GameMode = GameMode.Assassins;
+        public virtual GameMode GameMode { get; set; } = GameMode.Assassins;
 
         /// <summary>
         /// Current state of the game.
         /// </summary>
-        public GameState GameState = GameState.Setup;
+        public virtual GameState GameState { get; set; } = GameState.Setup;
 
         /// <summary>
         /// Players in this game.
         /// </summary>
-        public List<Player> Players = new List<Player>();
+        public virtual List<Player> Players { get; set; } = new List<Player>();
 
         public override string ToString()
         {

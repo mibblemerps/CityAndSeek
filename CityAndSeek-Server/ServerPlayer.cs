@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CityAndSeek.Common;
 using CityAndSeek.Server.Events;
+using Newtonsoft.Json;
 
 namespace CityAndSeek.Server
 {
@@ -14,6 +15,9 @@ namespace CityAndSeek.Server
     public class ServerPlayer : Player
     {
         public EventHandler<PlayerPositionUpdateEvent> OnPlayerPositionUpdate;
+
+        [JsonIgnore]
+        public CityAndSeekConnection Connection { get; set; }
 
         public new LatLng Position
         {

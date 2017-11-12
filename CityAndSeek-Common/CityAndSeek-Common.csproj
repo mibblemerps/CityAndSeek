@@ -46,6 +46,7 @@
     <Compile Include="Packets\Payloads\IPayload.cs" />
     <Compile Include="Packets\Payloads\JoinGamePayload.cs" />
     <Compile Include="Packets\Payloads\PositionUpdatePayload.cs" />
+    <Compile Include="Packets\Payloads\ServerPositionUpdatePayload.cs" />
     <Compile Include="Packets\Payloads\WelcomePayload.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

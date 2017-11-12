@@ -54,5 +54,12 @@ namespace CityAndSeek.Common.Packets
         /// Sends the new position of the player. This should be sent every few seconds or so.
         /// </summary>
         PositionUpdate,
+
+        /// <summary>
+        /// <b>Server -> Client</b><br />
+        /// Sends the new public position of player(s) to the client.<br />
+        /// This will be sent whenever the public position of player(s) changes.
+        /// </summary>
+        ServerPositionUpdate,
     }
 }
