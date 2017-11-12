@@ -53,6 +53,8 @@ namespace CityAndSeek.Server
             // Deserialise incoming message to a packet
             Packet packet = JsonConvert.DeserializeObject<Packet>(e.Data);
 
+            Debug.LogDebug("Received packet with intent: " + packet.Intent);
+
             // Dispatch packet to handlers
             foreach (IRequestHandler handler in RequestHandlers)
                 handler.OnPacket(packet);
