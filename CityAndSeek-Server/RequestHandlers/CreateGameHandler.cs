@@ -28,11 +28,12 @@ namespace CityAndSeek.Server.RequestHandlers
                 Name = requestedGame.Name,
                 Password = requestedGame.Password
             };
+            newGame.Setup();
 
             Connection.Server.Games.Add(newGame.Id, newGame);
 
             // Send created game back
-            Connection.SendPacket(new Packet(Intent.GameCreated, newGame));
+            Connection.SendPacket(new Packet(Intent.GameCreated, newGame, packet.Id));
         }
     }
 }
