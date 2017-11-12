@@ -20,7 +20,7 @@ namespace CityAndSeek.Common.Packets
         /// the same Id <b>must</b> be sent in any packet in response.<br />
         /// This Id can be left as 0 if it's not needed.
         /// </summary>
-        public int Id = 0;
+        public int Id = -1;
 
         /// <summary>
         /// Payload for this packet.

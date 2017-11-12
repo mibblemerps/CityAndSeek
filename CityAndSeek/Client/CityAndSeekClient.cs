@@ -10,8 +10,12 @@ using Android.Gms.Maps.Model;
 using Android.Gms.Tasks;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+using CityAndSeek.Client.Events;
+using CityAndSeek.Client.RequestHandlers;
+using CityAndSeek.Common;
 using CityAndSeek.Common.Packets;
 using CityAndSeek.Common.Packets.Payloads;
 using CityAndSeek.Helpers;
@@ -25,28 +29,45 @@ namespace CityAndSeek.Client
 {
     public class CityAndSeekClient
     {
-        /// <summary>
-        /// Links packet Ids to Actions which are supposed to handle them.
-        /// </summary>
-        private IDictionary<int, TaskCompletionSource<Packet>> _pendingActions = new Dictionary<int, TaskCompletionSource<Packet>>();
+        public event EventHandler<GameStateUpdateEvent> OnGameStateUpdate; 
 
-        private int _requestId = 0;
-
-        /// <summary>
-        /// Websocket URL to the server
-        /// </summary>
         public string Url { get; private set; }
-
         public WebSocket WebSocket { get; protected set; }
+
+        /// <summary>
+        /// Current player instance.
+        /// </summary>
+        public Player Player { get; set; }
 
         /// <summary>
         /// Get a unique request ID
         /// </summary>
         public int RequestId => _requestId++;
 
+        protected List<IRequestHandler> RequestHandlers;
+
+        /// <summary>
+        /// Links packet Ids to Actions which are supposed to handle them.
+        /// </summary>
+        private IDictionary<int, TaskCompletionSource<Packet>> _pendingActions = new Dictionary<int, TaskCompletionSource<Packet>>();
+        /// <summary>
+        /// Each time a unique request ID is needed, this is used and incremented.
+        /// </summary>
+        private int _requestId = 0;
+
         public CityAndSeekClient(string url)
         {
             Url = url;
+
+            OnGameStateUpdate += OnGameStateUpdateHandler;
+
+            var gameStateUpdateHandler = new GameStateUpdateHandler(this);
+            gameStateUpdateHandler.OnGameStateUpdate += (sender, e) => OnGameStateUpdate?.Invoke(sender, e);
+
+            RequestHandlers = new List<IRequestHandler>
+            {
+                gameStateUpdateHandler
+            };
         }
 
         protected Task<Packet> AwaitResponse(int requestId)
@@ -108,7 +129,12 @@ namespace CityAndSeek.Client
             {
                 // We have been awaiting this packet
                 _pendingActions[packet.Id].SetResult(packet);
+                _pendingActions.Remove(packet.Id);
             }
+
+            // Dispatch packet to request handlers
+            foreach (IRequestHandler handler in RequestHandlers)
+                handler.OnPacket(packet);
         }
 
         /// <summary>
@@ -161,6 +187,12 @@ namespace CityAndSeek.Client
             });
 
             return await success.Task;
+        }
+
+        private void OnGameStateUpdateHandler(object sender, GameStateUpdateEvent e)
+        {
+            Log.Debug(CityAndSeekApp.Tag, "Received new game state.");
+            Player.Game = e.Game;
         }
     }
 }

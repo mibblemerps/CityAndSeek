@@ -138,8 +138,9 @@ namespace CityAndSeek.Server
             }
 
             // Create a packet to broadcast to players
-            var positionUpdate = new ServerPositionUpdatePayload(newPositions);
-            var packet = new Packet(Intent.ServerPositionUpdate, positionUpdate);
+            //var positionUpdate = new ServerPositionUpdatePayload(newPositions);
+            //var packet = new Packet(Intent.ServerPositionUpdate, positionUpdate);
+            var packet = new Packet(Intent.GameState, (Game) this);
 
             foreach (var player1 in Players)
             {

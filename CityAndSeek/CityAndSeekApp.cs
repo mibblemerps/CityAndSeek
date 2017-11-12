@@ -26,8 +26,16 @@ namespace CityAndSeek
 
         public static CityAndSeekClient CsClient;
 
-        public Common.Game CurrentGame { get; protected set; }
-        public Player CurrentPlayer { get; protected set; }
+        public Common.Game CurrentGame
+        {
+            get => CsClient.Player.Game;
+            private set => CsClient.Player.Game = value;
+        }
+        public Player CurrentPlayer
+        {
+            get => CsClient.Player;
+            private set => CsClient.Player = value;
+        }
 
         public CityAndSeekApp(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
@@ -36,9 +44,8 @@ namespace CityAndSeek
 
         public void StartGame(Common.Game game, Player player)
         {
-            CurrentGame = game;
             CurrentPlayer = player;
-            player.Game = CurrentGame;
+            CurrentGame = game;
 
             // Start service
             var intent = new Intent(this, typeof(CsService.CsService));

@@ -115,6 +115,12 @@
   <ItemGroup>
     <Compile Include="CityAndSeekApp.cs" />
     <Compile Include="Client\CityAndSeekClient.cs" />
+    <Compile Include="Client\Events\GameStateUpdateEvent.cs" />
+    <Compile Include="Client\Events\ServerPositionUpdateEvent.cs" />
+    <Compile Include="Client\RequestHandlers\GameStateUpdateHandler.cs" />
+    <Compile Include="Client\RequestHandlers\IRequestHandler.cs" />
+    <Compile Include="Client\RequestHandlers\RequestHandler.cs" />
+    <Compile Include="Client\RequestHandlers\ServerPositionUpdateHandler.cs" />
     <Compile Include="CreateGameActivity.cs" />
     <Compile Include="CsService\CsService.cs" />
     <Compile Include="CsService\LocationTracker.cs" />
