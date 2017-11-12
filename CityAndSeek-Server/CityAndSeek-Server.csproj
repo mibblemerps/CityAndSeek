@@ -63,6 +63,7 @@
     <Compile Include="RequestHandlers\CreateGameHandler.cs" />
     <Compile Include="RequestHandlers\IRequestHandler.cs" />
     <Compile Include="RequestHandlers\JoinGameHandler.cs" />
+    <Compile Include="RequestHandlers\PositionUpdateHandler.cs" />
     <Compile Include="RequestHandlers\RequestHandler.cs" />
     <Compile Include="ServerGame.cs" />
     <Compile Include="ServerPlayer.cs" />
