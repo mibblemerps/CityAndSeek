@@ -26,7 +26,7 @@ namespace CityAndSeek.Server.RequestHandlers
             // Update position
             player.Position = positionUpdate.NewPosition;
 
-            Debug.LogDebug($"Position update received from {player} in {player.Game}: {player.Position}");
+            
         }
     }
 }

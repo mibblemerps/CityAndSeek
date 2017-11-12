@@ -14,5 +14,15 @@ namespace CityAndSeek.Server
     public class ServerPlayer : Player
     {
         public EventHandler<PlayerPositionUpdateEvent> OnPlayerPositionUpdate;
+
+        public new LatLng Position
+        {
+            get => base.Position;
+            set
+            {
+                base.Position = value;
+                OnPlayerPositionUpdate?.Invoke(this, new PlayerPositionUpdateEvent(value));
+            }
+        }
     }
 }

@@ -32,9 +32,16 @@ namespace CityAndSeek.Server
             OnPlayerJoinGame?.Invoke(this, new PlayerJoinGameEvent(player));
         }
 
-        private void OnPlayerJoinGameHandler(object sender, PlayerJoinGameEvent e)
+        private void OnPlayerJoinGameHandler(object joinEventSender, PlayerJoinGameEvent joinEvent)
         {
-            Debug.LogInfo($"Player {e.Player} has joined {this}.");
+            ServerPlayer player = joinEvent.Player;
+
+            Debug.LogInfo($"Player {player} has joined {this}.");
+
+            /*player.OnPlayerPositionUpdate += (sender, e) =>
+            {
+                Debug.LogDebug($"Position update received from {player} in {player.Game}: {player.Position}");
+            };*/
         }
     }
 }

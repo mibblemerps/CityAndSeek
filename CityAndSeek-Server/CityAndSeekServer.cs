@@ -32,6 +32,11 @@ namespace CityAndSeek.Server
             Server = new WebSocketServer(url);
 
             Debug.LogInfo("Starting server: " + url);
+
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+            };
             
             Server.AddWebSocketService("/", () => new CityAndSeekConnection(this));
 
