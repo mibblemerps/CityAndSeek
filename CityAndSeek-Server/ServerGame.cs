@@ -38,10 +38,10 @@ namespace CityAndSeek.Server
 
             Debug.LogInfo($"Player {player} has joined {this}.");
 
-            /*player.OnPlayerPositionUpdate += (sender, e) =>
+            player.OnPlayerPositionUpdate += (sender, e) =>
             {
                 Debug.LogDebug($"Position update received from {player} in {player.Game}: {player.Position}");
-            };*/
+            };
         }
     }
 }
